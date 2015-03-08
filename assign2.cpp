@@ -29,26 +29,60 @@ int main()
 	scanf("%s",inp);
 	int i=0;
 	arr = new int[n];
-	memset(arr,1,4);
+	for(int i=0;i<n;i++)
+	{
+		arr[i]=1;
+	}
 	pos=0;	
-	bool val=eval(inp);
-	printf("Result(beta version): ");
-	if(val==true)
-		printf("True\n");
-	else
-		printf("False\n");
-	return 0;	
+	for(int i=0;i<n;i++)
+	{
+		printf("%c\t",lit[i]);
+	}
+	printf("Output\n");
+	int lim=1;
+	for(int i=1;i<=n;i++)
+		lim<<=1;
+	printf("%d\n",lim);
+	for(int i=1;i<=lim;i++)
+	{
+		int p=0,iter=1;
+		while(p<n)
+		{
+			if(i%iter==0)
+			{
+				arr[p] = 1-arr[p];
+				p++;
+				iter<<=1;
+			}
+			else
+				break;
+		}
+		for(int p=0;p<n;p++)
+		{
+			if(arr[p] == 1)
+				printf("T\t");
+			else
+				printf("F\t");
+		}
+		pos=0;
+		bool val = eval(inp);
+		if(val == true)
+			printf("T\n");
+		else
+			printf("F\n");
+	}
+	return 0;
 }
 bool eval(char inp[])
 {
-	printf("eval...\n");	
+	//printf("eval...\n");	
 	bool result;
 	stack<bool> s;
 	while(inp[pos]!='\0')
 	{
 		char c=inp[pos];
-		putchar(c);
-		putchar('\n');
+		//putchar(c);
+		//putchar('\n');
 		if(c=='(')
 		{			
 			pos++;			
@@ -75,7 +109,7 @@ bool eval(char inp[])
 			}
 			else if(temp<='Z' && temp>='A')
 			{
-				int p = findpos(c);
+				int p = findpos(temp);
 				result = findval(p);
 				bool t = s.top();
 				t = operate(t,result,c);
@@ -102,14 +136,14 @@ bool eval(char inp[])
 }
 bool subeval(char inp[])
 {
-	printf("subeval...\n");	
+	//printf("subeval...\n");	
 	bool result;
 	stack<bool> s;
 	while(inp[pos]!=')')
 	{
 		char c=inp[pos];
-		putchar(c);
-		putchar('\n');
+		//putchar(c);
+		//putchar('\n');
 		if(c=='(')
 		{			
 			pos++;			
@@ -136,7 +170,7 @@ bool subeval(char inp[])
 			}
 			else if(temp<='Z' && temp>='A')
 			{
-				int p = findpos(c);
+				int p = findpos(temp);
 				result = findval(p);
 				bool t = s.top();
 				t = operate(t,result,c);
@@ -208,5 +242,8 @@ int findpos(char c)
 }
 bool findval(int p)
 {
-	return true;
+	if(arr[p]==1)
+		return true;
+	else
+		return false;
 }
