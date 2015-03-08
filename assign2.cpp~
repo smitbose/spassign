@@ -29,22 +29,11 @@ int main()
 	scanf("%s",inp);
 	int i=0;
 	arr = new int[n];
-	memset(arr,1,4);
-	printf("Initial array: ");
 	for(int i=0;i<n;i++)
 	{
 		arr[i]=1;
-		printf("%d ",arr[i]);
 	}
-	putchar('\n');
 	pos=0;	
-	/*bool val=eval(inp);
-	printf("Result(beta version): ");
-	if(val==true)
-		printf("True\n");
-	else
-		printf("False\n");
-	return 0;*/
 	for(int i=0;i<n;i++)
 	{
 		printf("%c\t",lit[i]);

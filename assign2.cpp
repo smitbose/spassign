@@ -2,6 +2,7 @@
 #include <cstring>
 #include <stack>
 #include <algorithm>
+#include "checker.h"
 using namespace std;
 int *arr;
 char *lit;
@@ -27,6 +28,8 @@ int main()
 	printf("Enter a well formed formula: ");
 	char inp[100];
 	scanf("%s",inp);
+	if(check(inp)==0)
+		return 0;
 	int i=0;
 	arr = new int[n];
 	for(int i=0;i<n;i++)
