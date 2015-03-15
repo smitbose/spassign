@@ -46,6 +46,7 @@ int main()
 	for(int i=1;i<=n;i++)
 		lim<<=1;
 	printf("%d\n",lim);
+	bool tf = true, ff =true;
 	for(int i=1;i<=lim;i++)
 	{
 		int p=0,iter=1;
@@ -70,10 +71,24 @@ int main()
 		pos=0;
 		bool val = eval(inp);
 		if(val == true)
+		{
 			printf("T\n");
+			ff = false;
+		}
 		else
+		{
 			printf("F\n");
+			tf = false;
+		}
 	}
+	if(tf == true)
+	{
+		printf("This is a valid formula!\n");
+	}
+	else if(ff == true)
+		printf("This is an inconsistent formula!\n");
+	else
+		printf("The formula in consistent but invalid!\n");
 	return 0;
 }
 bool eval(char inp[])
